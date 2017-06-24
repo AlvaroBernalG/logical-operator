@@ -173,7 +173,7 @@ describe('equal()', ()=>{
     const doNothing = (u) => u
 
     const sayHiToUser = (u) => {
-      console.log('sayign hi');
+      console.log('saying hi');
       return u
     }
 

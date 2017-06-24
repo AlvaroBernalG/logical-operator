@@ -1,6 +1,6 @@
 # logical-operators
 
-> A tiny library that abstracts away logical operators with the intention of improving code readability. Ideal for using it against arrays.
+> A tiny library that abstracts away logical operators with the intention of improving code readability. Ideal for composing complex validation queries.
 
 [![Build Status](https://travis-ci.org/AlvaroBernalG/logical-operators.svg?branch=master)](https://travis-ci.org/AlvaroBernalG/logical-operators) [![npm version](https://badge.fury.io/js/logical-operators.svg)](https://badge.fury.io/js/logical-operators)
 
@@ -12,47 +12,43 @@ $ npm install logical-operators --save
 
 ## Usage
 
-### every
+### every ( && )...
+
 ```js
 const { every } = require('logical-operators')
 const is = require('library-that-validate-stuff')
 
+const values = [1, 9, 7,'level', 'Venezuela', 'Caracas', 'Aba', 'hola', 10, undefined, 'USA']
 
-const doSomethingAwesome = (...args) =>{
+const palindromeCities = every(is.string, is.palindrome, is.city)
 
-  const number_singleDigit_and_natural = every(
-        is.number, 
-        is.singleDigit, 
-        is.natural
-      )
+values.filter(palindromeCities) // => ['Aba']
 
-  if (values.every(number_singleDigit_and_natural)){
-    //=> yay!!
-  }else{
-    //=> throw error
-  }
-}
+values.every(palindromeCities) // => false
+  
+values.some(palindromeCities) // => true
 
-doSomethingAwesome(1, 9, 7)
 ```
 
-Or maybe you want to filter an array of values against conditions:
+### some ( || ) ...
 ```js
-const { every } = require('logical-operators')
+
+const { some } = require('logical-operators')
+const between = require('in-between')
 const is = require('library-that-validate-stuff')
 
-const values = [1, 9, 7, 'Venezuela', 'hola', 10, undefined]
+const values = ['a','b','two', 'd', 'x', 3, undefined, null,'three']
 
-const number_singleDigit_and_natural = every(
-      is.number, 
-      is.singleDigit, 
-      is.natural
-    )
+ 
+values.every(some(between('w','z'), is.number, between('a','c'))) // => false
 
-values.filter(number_singleDigit_and_natural) // => [1, 9, 7, 10]
+values.filter(some(between('w','z'), is.number, between('a','c'))) // => ['b', 3, 'x']
+
 ```
 
-### or
+### or  ( || )
+
+Same as 'some' but only accepts 2 params
 
 ```js
 const { or } = require('logical-operators')
@@ -68,37 +64,24 @@ values.filter(string_or_number) // => [1, 2, 'three']
 
 ```
 
-### both
+### both  ( && )
 
+Same as 'every' but only accepts 2 params
 ```js
+
 const { both } = require('logical-operators')
 const is = require('library-that-validate-stuff')
 
 const values = ['a','b','two']
 
-const string_and_number = both(is.string, is.singleChar)
+const string_and_singleChar = both(is.string, is.singleChar)
 
-values.every(string_and_number) // => false
+values.every(string_and_singleChar) // => false
 
-values.filter(string_and_number) // => ['a','b']
-
-```
-
-### some
-
-```js
-const { both } = require('logical-operators')
-const is = require('library-that-validate-stuff')
-
-const values = ['a','b','two', 3]
-
-const string_and_number = some(is.string, is.singleChar, is.number)
-
-values.every(string_and_number) // => true
-
-values.filter(string_and_number) // => ['a','b', 3]
+values.filter(string_and_singleChar) // => ['a','b']
 
 ```
+
 
 ## License
 
