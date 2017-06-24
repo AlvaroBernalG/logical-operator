@@ -1,6 +1,6 @@
 {
   "name": "logical-operators",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "A tiny library that abstracts away logical operators with the intention of improving code readability.",
   "main": "index.js",
   "homepage": "https://github.com/alvarobernalg/logical-operators.git",
