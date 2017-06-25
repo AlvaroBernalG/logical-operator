@@ -2,8 +2,9 @@
 
 > A tiny library that abstracts away logical operators with the intention of improving code readability. Ideal for composing complex validation queries.
 
-[![Build Status](https://travis-ci.org/AlvaroBernalG/logical-operators.svg?branch=master)](https://travis-ci.org/AlvaroBernalG/logical-operators) [![npm version](https://badge.fury.io/js/logical-operators.svg)](https://badge.fury.io/js/logical-operators)
+[![Build Status](https://travis-ci.org/AlvaroBernalG/logical-operators.svg?branch=master)](https://travis-ci.org/AlvaroBernalG/logical-operators) [![npm version](https://badge.fury.io/js/logical-operators.svg)](https://badge.fury.io/js/logical-operators) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## [](#i-disagree-with-rule-x-can-you-change-it)
 
 ## Install
 ```
