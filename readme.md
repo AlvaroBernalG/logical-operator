@@ -1,6 +1,6 @@
 # logical-operators
 
-> A tiny library that abstracts away logical operators with the intention of improving code readability. Ideal for composing complex validation queries.
+> A tiny library that abstracts away logical operators with the intention of improving code readability. Ideal for composing complex validation queries. 
 
 [![Build Status](https://travis-ci.org/AlvaroBernalG/logical-operators.svg?branch=master)](https://travis-ci.org/AlvaroBernalG/logical-operators) [![npm version](https://badge.fury.io/js/logical-operators.svg)](https://badge.fury.io/js/logical-operators) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -82,6 +82,48 @@ values.every(string_and_singleChar) // => false
 values.filter(string_and_singleChar) // => ['a','b']
 
 ```
+
+### equal  ( == ) 
+
+```js
+const { equal, greater } = require('logical-operators')
+const is = require('library-that-validate-stuff')
+const compose = require('lodash/compose')
+
+var getAsciiSum = (str) => str.split('').map(char => char.charCodeAt(0)).reduce((prev, next)=> prev+ next,0)
+
+var values = [1,2,3, 'ab', 'e', 'T', 'W', '/']
+
+values.every(
+    is.string,
+    equal(getAsciiSum, compose(greater(102).than, toAscii) ),
+  ) // => false
+
+values.filter(
+    is.string,
+    equal(getAsciiSum, compose(greater(100).than, toAscii) ),
+  ) // => ['ab', 'e']
+
+```
+
+
+
+<!-- ### greater  ( > ) -->
+<!--  -->
+<!-- ```js -->
+<!--  -->
+<!-- const { both } = require('logical-operators') -->
+<!-- const is = require('library-that-validate-stuff') -->
+<!--  -->
+<!-- const values = ['a','b','two'] -->
+<!--  -->
+<!-- const greaterThan2 = greater(2).than -->
+<!--  -->
+<!-- values.every(greaterThan2) // => false -->
+<!--  -->
+<!-- values.filter(string_and_singleChar) // => ['a','b'] -->
+<!--  -->
+<!-- ``` -->
 
 
 ## License
